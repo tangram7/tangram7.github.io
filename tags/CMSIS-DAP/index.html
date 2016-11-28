@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014 | Yihui&#39;s puzzle</title>
+  <title>Tag: CMSIS-DAP | Yihui&#39;s puzzle</title>
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -15,7 +15,7 @@
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Yihui's puzzle">
-<meta property="og:url" content="http://tangram7.net/archives/2014/index.html">
+<meta property="og:url" content="http://tangram7.net/tags/CMSIS-DAP/index.html">
 <meta property="og:site_name" content="Yihui's puzzle">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -111,13 +111,14 @@
   <div class="container">
   <ul class="breadcrumb">
     <li><a href="/">Home</a></li>
-    <li class="active">Blog</li>
+    <li><a href="/blog">Blog</a></li>
+    <li class="active">Tagged: CMSIS-DAP</li>
   </ul>
-<div id="main">
-  <h1>Blog</h1>
+<section id="main">
+  <h1>Tagged: CMSIS-DAP</h1>
   <div class="row">
 
-<div class="col-md-9 col-sm-9 blog-posts">
+<div class="col-xs-12 blog-posts">
 
 
   <section class="archives-wrap">
@@ -161,7 +162,58 @@
     </ul>
     <div class="blog-item">
       
-	
+	<p>It’s cool that LPC1114FN28 based on ARM Cortex-M0 uses DIP package. We enjoy playing LPC1114 with a breadboard, wires, LEDs and etc. Programming LPC1114 is quite easy with an Arch board as a CMSIS DAP interface. To download a new binary into LPC1114 is just to drag-n-drop the binary file into “MBED” drive.</p>
+<p><img src="http://xiongyihui.github.io/Arch/images/Arch&amp;LPC1114.jpg" alt=""></p>
+<h3 id="Setup-Hardware"><a href="#Setup-Hardware" class="headerlink" title="Setup Hardware"></a>Setup Hardware</h3><p>Use Arch board as an mbed interface and connect Arch with LPC1114 through SWD interface or UART interface.</p>
+<table>
+<thead>
+<tr>
+<th>Arch board</th>
+<th>LPC1114 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> P0_11 (A0)</td>
+<td>nRESET</td>
+</tr>
+<tr>
+<td> P0_12 (A1)</td>
+<td>SWCLK</td>
+</tr>
+<tr>
+<td> P0_13 (A2)</td>
+<td>SWDIO</td>
+</tr>
+<tr>
+<td> P0_18 (D0)</td>
+<td>RXD</td>
+</tr>
+<tr>
+<td> P0_19 (D1)</td>
+<td>TXD</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Turn-Arch-into-mbed-Interface"><a href="#Turn-Arch-into-mbed-Interface" class="headerlink" title="Turn Arch into mbed Interface"></a>Turn Arch into mbed Interface</h3><p><a href="https://mbed.org/users/seeed/notebook/Arch_V1_1/" target="_blank" rel="external">The Arch board</a> is an mbed enabled development board for rapid prototyping. It can also be used as a CMSIS DAP interface(SWD/JTAG debug adapter, USB to UART bridge). We just need a specific firmware.</p>
+<ol>
+<li>Download <a href="https://github.com/xiongyihui/CMSIS-DAP/raw/lpc11u24/interface/mdk/lpc11u24/lpc11u24_lpc1114_if_mbed.bin" target="_blank" rel="external">mbed interface firmware for Arch board</a>.</li>
+<li>Connect Arch with PC, long press Arch’s button and replace firmware.bin with the new firmware in “CRP DISABLD” drive.</li>
+<li>Quick press the button. “MBED” drive will pop up.</li>
+<li>Install <a href="http://mbed.org/handbook/Windows-serial-configuration" target="_blank" rel="external">the mbed interface driver</a> to enable USB to UART function</li>
+</ol>
+<h3 id="Develop"><a href="#Develop" class="headerlink" title="Develop"></a>Develop</h3><ol>
+<li>In “MBED” drive, there is a “MBED.HTM” file which will lead to mbed.org.</li>
+<li>Add LPC1114FN28 to mbed compiler.</li>
+<li>On mbed compiler, it’s easy to write code, import libraries and share programs.</li>
+<li>Compile and download a binary into “MBED” drive. The program will run!</li>
+</ol>
+<p><img src="https://mbed.org/media/uploads/screamer/compiler-overview.png" alt=""></p>
+<h3 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h3><ol>
+<li><a href="https://mbed.org/handbook/CMSIS-DAP" target="_blank" rel="external">CMSIS DAP interface</a></li>
+<li><a href="https://mbed.org/users/ytsuboi/notebook/getting-started-with-mbed-lpc1114/" target="_blank" rel="external">Getting started with mbed LPC1114</a></li>
+</ol>
+
       
     </div>
     <br>
@@ -210,7 +262,25 @@
     </ul>
     <div class="blog-item">
       
-	
+	<p>I’m quite excited that Bluetooth Low Energy (nRF51822) is comming to mbed. So I’m exploring what we can do with BLE (nRF51822). Preparing tools to get started with new things is always the beginning.</p>
+<p>Here we use <a href="https://github.com/mbedmicro/CMSIS-DAP" target="_blank" rel="external">CMSIS-DAP</a> and <a href="https://github.com/mbedmicro/pyOCD" target="_blank" rel="external">pyOCD</a>. <a href="https://github.com/mbedmicro/CMSIS-DAP" target="_blank" rel="external">CMSIS-DAP</a> is the software running on mbed interface to provide drag-n-drop, USB2UART communication and SWD debug. pyOCD is an Open Source python library or programming and debugging ARM Cortex-M microcontrollers using CMSIS-DAP.</p>
+<p>First, use <a href="http://mbed.org/platforms/Seeeduino-Arch/" target="_blank" rel="external">Arch</a> as an mbed interface to run <a href="https://github.com/mbedmicro/CMSIS-DAP" target="_blank" rel="external">CMSIS-DAP</a>. </p>
+<ol>
+<li>Download <a href="https://github.com/xiongyihui/CMSIS-DAP/raw/lpc11u24/interface/mdk/lpc11u24/lpc11u24_nrf51822_if_mbed.bin" target="_blank" rel="external">mbed interface firmware for Arch</a>.</li>
+<li>Connect Arch with PC, long press Arch’s button and replace firmware.bin with the new firmware in “CRP DISABLD” drive on windows. use <code>dd if=lpc11u24_nrf51822_if_mbed.bin of={path-to}/firmware.bin conv=notrunc</code> on <a href="http://mbed.org/users/seeed/notebook/programming-seeeduino-arch/" target="_blank" rel="external">Linux/Mac</a></li>
+<li>Quick press the button. “MBED” drive will pop up.</li>
+<li>Install the <a href="http://mbed.org/handbook/Windows-serial-configuration" target="_blank" rel="external">mbed interface driver</a> for windows to enable USB2UART function</li>
+</ol>
+<p><img src="http://xiongyihui.github.io/assets/images/debug_adapter.png" alt="CMSIS-DAP debug adapter"></p>
+<p>Second, setup pyOCD for nRF51822. We need pyOCD, pyUSB(Linux) or pyWinUSB(Windows) and <a href="https://github.com/xiongyihui/pyOCD/raw/master/util/flash_nrf51822.py" target="_blank" rel="external">flash_nrf51822.py</a></p>
+<p>On Ubuntu</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-setuptools</span><br><span class="line">sudo easy_install pyusb</span><br><span class="line">sudo easy_install pyocd</span><br><span class="line">wget https://github.com/xiongyihui/pyOCD/raw/master/util/flash_nrf51822.py</span><br></pre></td></tr></table></figure>
+<p>On windows, install pyWinUSB instread of pyUSB.</p>
+<p>Third, flash softdevice hex file or application binary file to nRF51822.</p>
+<p>The softdevice hex file include two parts — Code Region 0(CR0) and User Information Configuration Registers(UICR). Here we use arm-none-eabi-objcopy to divide the hex file into two binary files for CR0 and UICR. It’s done in flash_nrf51822.py, so we just need to keep arm-none-eabi-objcop in the PATH variable. </p>
+<p>To flash softdevice hex, just run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python flash_nrf51822.py -s softdevice.hex</span><br></pre></td></tr></table></figure></p>
+<p>To flash an application binary<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python flash_nrf51822.py -a &#123;application.bin&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     <br>
@@ -231,46 +301,11 @@
 
 </div>
 
-<div class="col-md-3 col-sm-3 blog-sidebar">
-  <!-- CATEGORIES START -->
-<h2 class="no-top-space">Categories</h2>
-
-
-<!-- CATEGORIES END -->
-
-<!-- BEGIN BLOG TAGS -->
-<div class="blog-tags margin-bottom-20">
-  <h2>Tags</h2>
-  
-  <div class="widget-wrap">
-    <div class="widget">
-      
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CMSIS-DAP/"><i class='fa fa-tags'></i>CMSIS-DAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LPC1114/"><i class='fa fa-tags'></i>LPC1114</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mbed/"><i class='fa fa-tags'></i>mbed</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nRF51822/"><i class='fa fa-tags'></i>nRF51822</a></li></ul>
-    </div>
-  </div>
-
-
-</div>
-<!-- END BLOG TAGS -->
-
-
-<!-- BEGIN FEATURED POSTS -->                            
-<h2>Featured Posts</h2>
-<div class="recent-news margin-bottom-10">
-  
-    
-  
-    
-  
-</div>
-<!-- END FEATURED POSTS -->                            
-
 </div>
 
+</section>
 </div>
 
-</div>
-</div>
 
   
     <!-- BEGIN FOOTER -->
